@@ -137,7 +137,7 @@ For WeatherBench2 forecasting, we additionally set
 `XLA_FLAGS="--xla_gpu_autotune_level=0"` to avoid memory errors as follows:
 
 ```
-XLA_FLAGS="--xla_gpu_autotune_level=0" python -m kauldron.main --cfg=scivid/configs/launch_config.py:hf_videomae:weatherbench_future_prediction  --cfg.workdir=/home/${USER}/tmp/exps/weatherbench_videomae --cfg.aux.platform='cuda' --pdb
+XLA_FLAGS="--xla_gpu_autotune_level=0" python -m kauldron.main --cfg=scivid/configs/launch_config.py:hf_videomae:weatherbench_future_pred  --cfg.workdir=/home/${USER}/tmp/exps/weatherbench_videomae --cfg.aux.platform='cuda' --pdb
 ```
 
 Note that this may slow down training.
