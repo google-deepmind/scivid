@@ -70,7 +70,7 @@ class MeanAveragePrecision(base.Metric):
       results = {}
 
       # Compute average precision for each separate class.
-      # TODO(b/406164638): require sklearn version this is tested for? (1.6.1)
+      # This was tested for sklearn 1.6.1
       per_class_ap = sklearn.metrics.average_precision_score(
           y_true=labels,
           y_score=predictions,
