@@ -1,0 +1,30 @@
+name: scivid
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  # Core dependencies
+  - python>=3.9
+  - pip
+  - cuda-nvcc
+  - pytorch
+  - tensorflow
+  - torchvision
+  - easydict
+  - timm
+  - transformers
+  - jax[cuda12]
+  - jaxlib=*=*cuda*
+  - gcsfs
+  - scikit-learn>=1.6.1
+  # Development dependencies
+  - pytest
+  - pytest-xdist
+  - pylint>=2.6.0
+  - pip:
+    # Include change which prevents kauldron data workers from overusing the GPU memory.
+    - git+https://github.com/google-research/kauldron@8635fa6
+    - git+https://github.com/deepmind/einshape
+    - orbax-checkpoint<=0.11.16
+    - tensorflow-graphics
+    - xarray_tensorstore

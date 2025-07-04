@@ -1,0 +1,68 @@
+[project]
+# Project metadata. Available keys are documented at:
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata
+name = "scivid"
+description = "SciVid: Cross-Domain Evaluation of Video Models in Scientific Applications."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+# TODO(b/397923748): Fill in below based on finalized tech report
+authors = [{name = "SciVid team", email="scivid@google.com"}]
+# TODO(b/407959855): Fill in below based on legal decisions (licenses and co)
+classifiers = [  # List of https://pypi.org/classifiers/
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Science/Research",
+]
+# TODO(b/397923748): Fill in below based on finalized tech report
+keywords = []
+
+# pip dependencies of the project
+# Installed locally with `pip install -e .`
+dependencies = [
+  # Include change which prevents kauldron data workers from overusing the
+  # GPU memory.
+  "kauldron @ git+https://github.com/google-research/kauldron.git@8635fa6",
+  "einshape",
+  "gcsfs",
+  "torch",
+  "easydict",
+  "timm",
+  "transformers",
+  "tensorflow_graphics",
+  "xarray",
+  "xarray_tensorstore",
+  "scikit-learn>=1.6.1",
+]
+
+# `version` is automatically set by flit to use `my_project.__version__`
+# TODO(b/397923748): set this up too
+dynamic = ["version"]
+
+[project.urls]
+# TODO(b/397923748): update this once website is finalized
+homepage = "https://github.com/google-deepmind/scivid"
+repository = "https://github.com/google-deepmind/scivid"
+# TODO(b/397923748): set up the change log
+changelog = "https://github.com/google-deepmind/scivid/blob/main/CHANGELOG.md"
+# documentation = ""
+
+[project.optional-dependencies]
+# Development deps (unittest, linting, formating,...)
+# Installed through `pip install -e .[dev]`
+dev = [
+    "pytest",
+    "pytest-xdist",
+    "pylint>=2.6.0",
+    "pyink",
+]
+
+[tool.pyink]
+# Formatting configuration to follow Google style-guide
+line-length = 80
+unstable = true
+pyink-indentation = 2
+pyink-use-majority-quotes = true
+
+[tool.setuptools.packages.find]
+where = ["."]  # list of folders that contain the packages (["."] by default)
+include = ["*"]  # package names should match these glob patterns (["*"] by default)
