@@ -6,15 +6,26 @@ description = "SciVid: Cross-Domain Evaluation of Video Models in Scientific App
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
-# TODO(b/397923748): Fill in below based on finalized tech report
 authors = [{name = "SciVid team", email="scivid@google.com"}]
-# TODO(b/407959855): Fill in below based on legal decisions (licenses and co)
 classifiers = [  # List of https://pypi.org/classifiers/
     "License :: OSI Approved :: Apache Software License",
     "Intended Audience :: Science/Research",
 ]
-# TODO(b/397923748): Fill in below based on finalized tech report
-keywords = []
+keywords = [
+  "video",
+  "foundation models",
+  "cv4science",
+  "ai4science",
+  "benchmark",
+  "computer vision",
+  "weather forecasting",
+  "animal behavior",
+  "digital typhoon",
+  "surgical tracking"
+  "pytorch",
+  "flax",
+  "kauldron",
+]
 
 # pip dependencies of the project
 # Installed locally with `pip install -e .`
@@ -34,15 +45,10 @@ dependencies = [
   "scikit-learn>=1.6.1",
 ]
 
-# `version` is automatically set by flit to use `my_project.__version__`
-# TODO(b/397923748): set this up too
-dynamic = ["version"]
+version = "1.0.0"
 
 [project.urls]
-# TODO(b/397923748): update this once website is finalized
-homepage = "https://github.com/google-deepmind/scivid"
 repository = "https://github.com/google-deepmind/scivid"
-# TODO(b/397923748): set up the change log
 changelog = "https://github.com/google-deepmind/scivid/blob/main/CHANGELOG.md"
 # documentation = ""
 
