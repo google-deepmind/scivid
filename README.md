@@ -10,7 +10,7 @@ This repository contains:
 evaluations
 * [Instructions](https://github.com/google-deepmind/scivid?tab=readme-ov-file#usage) to evaluate pretrained video models on SciVid (eg. [Hugging Face VideoMAE-B backbone](https://huggingface.co/MCG-NJU/videomae-base)), easily extensible to evaluate your own.
 * [![Open In
-Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-deepmind/scivid/colabs/demo.ipynb) demo to inspect SciVid benchmark data, models and predictions.
+Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google-deepmind/scivid/blob/master/colabs/demo.ipynb) demo to inspect SciVid benchmark data, models and predictions.
 
 ## Overview
 
