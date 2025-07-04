@@ -70,7 +70,7 @@ Set the `SCIVID_DATA_DIR` environment variable with which will point to the
 local scivid data directory.
 
 ```sh
-export SCIVID_DATA_DIR=/path/to/scivid
+export SCIVID_DATA_DIR=/path/to/scivid_data  # set to the desired path
 ```
 
 ### Download data
@@ -127,17 +127,17 @@ ulimit -n 4096
 Below, we provide an example training command for training the task-specific
 readout using frozen features from the
 [VideoMAE-B](https://huggingface.co/MCG-NJU/videomae-base) backbone on the
-Fly vs. Fly task.
+Fly vs. Fly task (on GPU).
 
 ```sh
-python -m kauldron.main --cfg=scivid/configs/launch_config.py:hf_videomae:flyvsfly_classification  --cfg.workdir=/home/${USER}/tmp/exps/flyvsfly_videomae --pdb
+python -m kauldron.main --cfg=scivid/configs/launch_config.py:hf_videomae:flyvsfly_classification  --cfg.workdir=/home/${USER}/tmp/exps/flyvsfly_videomae --cfg.aux.platform='cuda' --pdb
 ```
 
 For WeatherBench2 forecasting, we additionally set
 `XLA_FLAGS="--xla_gpu_autotune_level=0"` to avoid memory errors as follows:
 
 ```
-XLA_FLAGS="--xla_gpu_autotune_level=0" python -m kauldron.main --cfg=scivid/configs/launch_config.py:hf_videomae:weatherbench_future_prediction  --cfg.workdir=/home/${USER}/tmp/exps/weatherbench_videomae --pdb
+XLA_FLAGS="--xla_gpu_autotune_level=0" python -m kauldron.main --cfg=scivid/configs/launch_config.py:hf_videomae:weatherbench_future_prediction  --cfg.workdir=/home/${USER}/tmp/exps/weatherbench_videomae --cfg.aux.platform='cuda' --pdb
 ```
 
 Note that this may slow down training.

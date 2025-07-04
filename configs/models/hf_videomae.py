@@ -20,12 +20,10 @@ from kauldron import konfig
 
 # pylint: disable=g-import-not-at-top
 with konfig.imports():
-  import jax
   from kauldron import kd
   from scivid.data.transforms import transforms as data_transforms
   from scivid.models.backbones import videomae
   import transformers
-  import torch
 # pylint: enable=g-import-not-at-top
 
 # Notations:
@@ -70,6 +68,7 @@ def get_config(
 ) -> kd.train.Trainer:
   """The default hyperparameter configuration for the mock model."""
   cfg.aux.update({
+      "platform": "cpu",  # one of 'cpu' or 'cuda'
       # "Readout" refers to the lightweight module learned to map backbone
       # features to task outputs.
       "readout": {
@@ -83,12 +82,8 @@ def get_config(
                   int(IMAGE_SIZE / PATCH_SIZE),
                   LATENT_DIM,
               ),
-              torch_device=(
-                  torch.device("cuda")
-                  if torch.cuda.is_available()
-                  else torch.device("cpu")
-              ),
-              jax_device=konfig.resolve(jax.devices())[0].platform,
+              torch_device=cfg.ref.aux.platform,
+              jax_device=cfg.ref.aux.platform,
           ),
           # Connecting the model output to the readout inputs with Kauldron keys
           "readout_inputs": {
