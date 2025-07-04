@@ -40,18 +40,27 @@ __For Digital Typhoon:__
 - We downsampled the videos from 512x512 to 256x256 to reduce the memory footprint of the dataset.
 
 __For Weatherbench 2:__
-We took the publicly available ARCO ERA5 weather [dataset](gs://gcp-public-data-arco-era5/ar/model-level-1h-0p25deg.zarr-v1) as specified [here](gs://gcp-public-data-arco-era5/ar/model-level-1h-0p25deg.zarr-v1).
 
-We then filtered this dataset to retain only the three key variables and levels (geopotential@500, temperature@850, and specific_humidity@700). Furthermore, we downsampled this dataset from the initial spatial resolution of 0.25°, down to a coarser 1° resolution: this corresponds to a spatial resolution of 181 × 360. We do this by slicing the dataset spatially by taking every 4th pixel from the original 0.25° resolution.
-Finally, we reduce the dataset temporally to only include the dates that span
+- We took the publicly available ARCO ERA5 weather at 0.25°
+(stored at 'gs://gcp-public-data-arco-era5/ar/model-level-1h-0p25deg.zarr-v1')
+as specified [here](https://github.com/google-research/arco-era5?tab=readme-ov-file#025-model-level-data).
+
+- We filtered this dataset to retain only the three key variables and levels (geopotential@500, temperature@850, and specific_humidity@700).
+
+- We downsampled this dataset from the initial spatial resolution of 0.25°, down to a coarser 1° resolution: this corresponds to a spatial resolution of 181 × 360. We do this by slicing the original dataset spatially by taking every 4th pixel from the original 0.25° resolution.
+
+- We further reduced the dataset temporally to only include the dates that span
 the range included in our train, validation and test splits.
-
-We split the data following [3]: the train, validation and test splits consist of all trajectories for the years 1979-2017, 2018 and 2020, respectively. We consider temporal trajectories, where frames are taken with a 12 hour interval, and consisting of 16 frames as input to the model and 16 future frames required for prediction.
+We followed the splits introduced in [3]: the train, validation and test splits
+consist of all trajectories for the years 1979-2017, 2018 and 2020,
+respectively. We consider temporal trajectories, where frames are taken with a
+12 hour interval, and consisting of 16 frames as input to the model and 16
+future frames required for prediction.
 
 __For STIR:__
 
 - We filter all videos for which there are no query points,
-following authors’ [code](https://github.com/athaddius/STIRMetrics/blob/0b9be8b935dd6d548cae69ff46a85ce9f8a1d71f/src/datatest/write2dgtjson.py#L84).
+following [authors’ code](https://github.com/athaddius/STIRMetrics/blob/0b9be8b935dd6d548cae69ff46a85ce9f8a1d71f/src/datatest/write2dgtjson.py#L84).
 - We normalize all query and target point coordinates by image dimensions.
 - We use the train and validation splits [from the 2024 challenge](https://ieee-dataport.org/open-access/stir-surgical-tattoos-infrared) and the later-released [test set](https://zenodo.org/records/14803158).
 - We downsampled the videos to 512x512 to reduce the memory footprint of the dataset.
@@ -63,7 +72,7 @@ __For MOVI:__
 
 [1] Jennifer J. Sun, Ann Kennedy, Eric Zhan, David J. Anderson, Yisong Yue, and
 Pietro Perona. Task programming: Learning data efficient behavior
-representations. In CVPR, 2021.6163617
+representations. In CVPR, 2021.
 
 [2] Zhao, Long, et al. "Videoprism: A foundational visual encoder for video
 understanding." arXiv preprint arXiv:2402.13217 (2024).
