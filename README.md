@@ -148,10 +148,11 @@ We hope that our work will facilitate further research in cross-domain
 development of ViFMs. <br> If you use our SciVid benchmark, please cite:
 
 ```
-@article{hasson2025scivid,
+@inproceedings{hasson2025scivid,
       title={SCIVID: Cross-Domain Evaluation of Video Models in Scientific Applications},
       author={Hasson, Yana and Luc, Pauline and Momeni, Liliane and Ovsjanikov, Maks and Le Moing, Guillaume and Kuznetsova, Alina and Ktena, Ira and Sun, Jennifer J. and Koppula, Skanda and Gokay, Dilara and Heyward, Joseph and Pot, Etienne and Zisserman, Andrew},
       year={2025},
+      booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
 }
 ```
 <!-- add: journal={arxiv:XXXX}, -->
@@ -222,7 +223,7 @@ SciVid uses the following separate libraries and packages:
 *   [JAX](https://github.com/jax-ml/jax/)
 *   [NumPy](https://github.com/numpy/numpy)
 *   [torch](https://pytorch.org/)
-*   [hf transformers](https://huggingface.co/docs/transformers/en/index)
+*   [transformers](https://huggingface.co/docs/transformers/en/index)
 *   [xarray](https://docs.xarray.dev/en/stable/)
 *   [xarray_tensorstore](https://github.com/google/xarray-tensorstore)
 *   [einshape](https://github.com/google-deepmind/einshape)
