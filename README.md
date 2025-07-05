@@ -133,6 +133,19 @@ Fly vs. Fly task (on GPU).
 python -m kauldron.main --cfg=scivid/configs/launch_config.py:hf_videomae:flyvsfly_classification  --cfg.workdir=/home/${USER}/tmp/exps/flyvsfly_videomae --cfg.aux.platform='cuda' --pdb
 ```
 
+For optimized training speed, we recommend storing the data on a
+local SSD drive. This is particularly important to speed up
+training on the `weatherbench_future_pred` task.
+
+For instance, you can download data from the `weatherbench_future_pred` task
+with:
+
+```sh
+export SCIVID_DATA_DIR=/path/to/ssd/scivid_data  # set to the desired local SSD path
+mkdir -p $SCIVID_DATA_DIR/full/weatherbench
+gsutil -m rsync -r gs://scivid/full/weatherbench $SCIVID_DATA_DIR/full/weatherbench
+```
+
 For WeatherBench2 forecasting, we additionally set
 `XLA_FLAGS="--xla_gpu_autotune_level=0"` to avoid memory errors as follows:
 
