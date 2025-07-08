@@ -65,29 +65,33 @@ conda activate scivid
 
 ## Setup data
 
-### Define local SciVid data directory by setting `SCIVID_DATA_DIR`
-
-Set the `SCIVID_DATA_DIR` environment variable with which will point to the
-local scivid data directory.
-
-```sh
-export SCIVID_DATA_DIR=/path/to/scivid_data  # set to the desired path
-```
-
 ### Download data
 
-For optimized training, download the data from the [scivid cloud storage bucket](https://storage.googleapis.com/scivid) using
+For optimized training, download the data from the [scivid cloud storage bucket](https://storage.googleapis.com/scivid).
+We also recommend storing the data on a
+local SSD drive, if you have one available. This is particularly important to
+speed up training on the `weatherbench_future_pred` task.
 
 ```sh
-mkdir -p $SCIVID_DATA_DIR
-gsutil -m rsync -r gs://scivid $SCIVID_DATA_DIR
+export SCIVID_COPY=/path/to/scivid_data_copy  # set to the desired path (on ssd if available)
+mkdir -p $SCIVID_COPY
+gsutil -m rsync -r gs://scivid $SCIVID_COPY
 ```
 
-Alternatively (slower), you can mount the data using [gcsfuse](https://cloud.google.com/storage/docs/cloud-storage-fuse/overview) in your home folder by running.
+Alternatively (slower), you can mount the data using [gcsfuse](https://cloud.google.com/storage/docs/cloud-storage-fuse/overview) in a separate location by running:
 
 ```sh
-mkdir -p $SCIVID_DATA_DIR
-gcsfuse --implicit-dirs scivid $SCIVID_DATA_DIR
+export SCIVID_MOUNT=/path/to/scivid_data_mount  # set to *a separate location* from SCIVID_COPY
+mkdir -p $SCIVID_MOUNT
+gcsfuse --implicit-dirs scivid $SCIVID_MOUNT
+```
+
+In this case, we still recommend downloading the data for the
+`weatherbench_future_pred` task with:
+
+```sh
+mkdir -p $SCIVID_COPY/full/weatherbench
+gsutil -m rsync -r gs://scivid/full/weatherbench $SCIVID_COPY/full/weatherbench
 ```
 
 ## Usage
@@ -125,6 +129,13 @@ ulimit -n 4096
 
 ### Run training
 
+Set the `SCIVID_DATA_DIR` environment variable to either the root of the
+copied or mounted data, depending on which data source you intend to use.
+
+```sh
+export SCIVID_DATA_DIR=$SCIVID_COPY  # or $SCIVID_MOUNT
+```
+
 Below, we provide an example training command for training the task-specific
 readout using frozen features from the
 [VideoMAE-B](https://huggingface.co/MCG-NJU/videomae-base) backbone on the
@@ -132,19 +143,6 @@ Fly vs. Fly task (on GPU).
 
 ```sh
 python -m kauldron.main --cfg=scivid/configs/launch_config.py:hf_videomae:flyvsfly_classification  --cfg.workdir=/home/${USER}/tmp/exps/flyvsfly_videomae --cfg.aux.platform='cuda' --pdb
-```
-
-For optimized training speed, we recommend storing the data on a
-local SSD drive. This is particularly important to speed up
-training on the `weatherbench_future_pred` task.
-
-For instance, you can download data from the `weatherbench_future_pred` task
-with:
-
-```sh
-export SCIVID_DATA_DIR=/path/to/ssd/scivid_data  # set to the desired local SSD path
-mkdir -p $SCIVID_DATA_DIR/full/weatherbench
-gsutil -m rsync -r gs://scivid/full/weatherbench $SCIVID_DATA_DIR/full/weatherbench
 ```
 
 For WeatherBench2 forecasting, we additionally set
