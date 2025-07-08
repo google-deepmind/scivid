@@ -1,6 +1,7 @@
 # SciVid: Cross-Domain Evaluation of Video Models in Scientific Applications
 
-Welcome to the official Google DeepMind repository for SciVid, a comprehensive
+Welcome to the official Google DeepMind repository for
+[SciVid](https://arxiv.org/abs/2507.03578), a comprehensive
 benchmark for evaluating Video Foundation Models (ViFMs) across multiple
 scientific disciplines.
 
@@ -33,9 +34,9 @@ without freezing the backbone.
 ![Evaluation overview](assets/evaluation_overview.png)
 ***Evaluation overview**. For each task, we train a lightweight readout on top of the backbone, which is frozen (❄️) or fine-tuned (🔥).*
 
-In our [paper](TODO), we evaluate the capabilities of a large set of ViFMs,
-establishing strong baselines and demonstrating the potential for effective
-transfer learning.
+In our [paper](https://arxiv.org/abs/2507.03578), we evaluate the capabilities
+of a large set of ViFMs, establishing strong baselines and demonstrating the
+potential for effective transfer learning.
 
 ## Installation
 
