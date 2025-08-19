@@ -40,11 +40,14 @@ GRID_FEATURES: str = "preds.grid_features"
 # Path to the pretrained model weights.
 # The weights can be downloaded from:
 # https://storage.googleapis.com/representations4d/checkpoints/scaling4d_dist_b.npz  # pylint: disable=line-too-long
-PRETRAINED_WEIGHTS_PATH = os.getenv('SCALING4D_DATA_PATH')
+PRETRAINED_WEIGHTS_PATH = os.getenv('SCALING4D_CHECKPOINT_PATH')
 if PRETRAINED_WEIGHTS_PATH is None:
   raise ValueError(
-      "Please provide path to the scaling4d checkpoint weights using"
-      " SCALING4D_DATA_PATH environment variable."
+      "Please download the scaling4d checkpoint weights stored at"
+      " https://storage.googleapis.com/representations4d/checkpoints/scaling4d_dist_b.npz"
+      " and provide path to the downloaded scaling4d checkpoint weights using"
+      " the SCALING4D_CHECKPOINT_PATH environment variable (see README.md for"
+      " details)."
   )
 
 # Expected image size for the model (set to the pretraining spatial resolution)

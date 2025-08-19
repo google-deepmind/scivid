@@ -154,6 +154,32 @@ XLA_FLAGS="--xla_gpu_autotune_level=0" python -m kauldron.main --cfg=scivid/conf
 
 Note that this may slow down training.
 
+### Run training with [Scaling 4D Representations](https://arxiv.org/abs/2412.15212) model
+
+Download pre-trained model checkpoint with
+
+```sh
+wget -P ~/ https://storage.googleapis.com/representations4d/checkpoints/scaling4d_dist_b.npz
+```
+
+Set the `SCALING4D_CHECKPOINT_PATH` environment variable to the downloaded
+checkpoint path.
+
+```sh
+export SCALING4D_CHECKPOINT_PATH=~/scaling4d_dist_b.npz
+```
+
+Launch training with scaling4d 4DS-B-dist-e model
+
+```sh
+python -m kauldron.main --cfg=scivid/configs/launch_config.py:scaling4d:flyvsfly_classification  --cfg.workdir=/home/${USER}/tmp/exps/flyvsfly_scaling4d --cfg.aux.platform='cuda' --pdb
+```
+
+Note that released scaling4d **4DS-B-dist-e** checkpoint is
+**distilled from the released 4DS-e model**.
+Results for this checkpoint are therefore different from the results reported
+for the pretrained 4DS-B model in Table 5 of the [SciVid paper](https://arxiv.org/pdf/2507.03578).
+
 ## Citing this work
 
 We hope that our work will facilitate further research in cross-domain
