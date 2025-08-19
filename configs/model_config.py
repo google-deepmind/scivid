@@ -24,6 +24,7 @@ from kauldron import konfig
 with epy.lazy_imports():
   from scivid.configs.models import mock_model
   from scivid.configs.models import hf_videomae
+  from scivid.configs.models import scaling4d
 
 with konfig.imports():
   from kauldron import kd

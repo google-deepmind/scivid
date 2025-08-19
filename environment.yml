@@ -25,6 +25,7 @@ dependencies:
     # Include change which prevents kauldron data workers from overusing the GPU memory.
     - git+https://github.com/google-research/kauldron@8635fa6
     - git+https://github.com/deepmind/einshape
+    - git+https://github.com/google-deepmind/representations4d
     - orbax-checkpoint<=0.11.16
     - tensorflow-graphics
     - xarray_tensorstore
