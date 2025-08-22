@@ -177,8 +177,15 @@ python -m kauldron.main --cfg=scivid/configs/launch_config.py:scaling4d:flyvsfly
 
 Note that released scaling4d **4DS-B-dist-e** checkpoint is
 **distilled from the released 4DS-e model**.
-Results for this checkpoint are therefore different from the results reported
+Results for this checkpoint are therefore *different from* the results reported
 for the pretrained 4DS-B model in Table 5 of the [SciVid paper](https://arxiv.org/pdf/2507.03578).
+
+We report the following results for the released 4DS-B-dist-e checkpoint:
+
+| Dataset | FlyVsFly | STIR | WB2 Z500/T850/Q700 |
+| :--- | :--- | :--- | :--- |
+| Metric | mAP ↑ | Acc ↑ | wRMSE ↓ |
+| val results | 84.3 | 44.1 | 608/2.88/15.9e-3 |
 
 ## Citing this work
 
