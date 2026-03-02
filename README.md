@@ -75,7 +75,7 @@ speed up training on the `weatherbench_future_pred` task.
 ```sh
 export SCIVID_COPY=/path/to/scivid_data_copy  # set to the desired path (on ssd if available)
 mkdir -p $SCIVID_COPY
-gsutil -m rsync -r gs://scivid $SCIVID_COPY
+gcloud storage rsync --recursive gs://scivid $SCIVID_COPY
 ```
 
 Alternatively (slower), you can mount the data using [gcsfuse](https://cloud.google.com/storage/docs/cloud-storage-fuse/overview) in a separate location by running:
@@ -91,7 +91,7 @@ In this case, we still recommend downloading the data for the
 
 ```sh
 mkdir -p $SCIVID_COPY/full/weatherbench
-gsutil -m rsync -r gs://scivid/full/weatherbench $SCIVID_COPY/full/weatherbench
+gcloud storage rsync --recursive gs://scivid/full/weatherbench $SCIVID_COPY/full/weatherbench
 ```
 
 ## Usage
@@ -357,4 +357,3 @@ Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D.,
 Simmons, A., Soci, C., Dee, D., Thépaut, J-N. (2023): ERA5 hourly data on
 pressure levels from 1940 to present. Copernicus Climate Change Service (C3S)
 Climate Data Store (CDS), DOI: 10.24381/cds.bd0915c6 (Accessed on DD-MMM-YYYY)
-
